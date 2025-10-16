@@ -1,0 +1,68 @@
+name: DC-SCM reference design with Lattice and NXP
+definition:
+    company: Antmicro
+    description: A reference DC-SCM design developed in collaboration with Lattice Semiconductor and NXP Semiconductors, providing BMC functionality through a compact SoM including a Lattice FPGA and NXP applications processor embedded on a DC-SCM carrier card.
+
+    spec: https://raw.githubusercontent.com/antmicro/designer-graphs/refs/heads/main/dc-scm_reference_design_with_lattice_and_nxp.json
+
+    scenarios:
+        2025 OCP Global Summit demo:
+            description: 'Demo scenario prepared for OCP Global Summit 2025'
+            device: 2025_ocp_global_summit_demo
+            assets:
+                - device: dc-scm_osm-l_carrier_card_with_bmc_som -> bmc-reference-osm -> lattice-semiconductor-lfcpnx-100-8cbg256c
+                  asset: scm_ltpi_rtl
+                - device: dc-scm_osm-l_carrier_card_with_bmc_som -> bmc-reference-osm -> nxp-mimx94398dvmmaa
+                  asset: openbmc -> openbmc_upstream
+                - device: dc-scm_osm-l_carrier_card_with_bmc_som -> bmc-reference-osm -> nxp-mimx94398dvmmaa
+                  asset: openbmc_yocto_meta_layer
+                - device: lincoln_city_server -> lincoln_city_hpm -> lattice-semiconductor-lcmxo3d-9400hc-5bg400c
+                  asset: hpm_ltpi_rtl
+
+    devices:
+        bmc-reference-carrier-board: ref
+        bmc-reference-osm: ref
+        dc-scm_osm-l_carrier_card_with_bmc_som: ref
+
+        # XXX(pkoscik): required to make VSD asset binding work
+        lattice-semiconductor-lfcpnx-100-8cbg256c: ref
+        lattice-semiconductor-lcmxo3d-9400hc-5bg400c: ref
+        nxp-mimx94398dvmmaa: ref
+        lincoln_city_hpm: ref
+
+        imx943_evk: ref
+
+        lincoln_city_server: ref
+
+        2025 OCP Global Summit demo:
+            category: Complex devices
+            description: Demo setup for 2025 OCP Global Summit
+            image: https://raw.githubusercontent.com/antmicro/designer-media-files/refs/heads/main/2025_ocp_global_summit_demo.webp
+            contains:
+                - bmc-reference-osm
+                - dc-scm_osm-l_carrier_card_with_bmc_som
+                - lincoln_city_server
+
+    software:
+        OpenBMC:
+            what: linux-app
+            description: Linux distribution for management controllers used in devices such as servers, top of rack switches or RAID appliances
+            assets:
+                OpenBMC upstream: $GH/openbmc/openbmc@walnascar
+
+        OpenBMC webui-vue:
+            what: web-app
+            description: OpenBMC's web interface
+            assets:
+                OpenBMC upstream: $GH/openbmc/webui-vue@master
+
+        OpenBMC Yocto meta layer:
+            description: Yocto meta layer with all necessary software components and configurations, required to run OpenBMC on the OSM board
+            what: yocto
+
+        HPM LTPI RTL:
+            description: FPGA bitstream that implements the LTPI logic for communication between the Host Processor Module controller and the platform components
+            what: fpga-bitstream
+        SCM LTPI RTL:
+            description: FPGA bitstream that implements the LTPI logic for communication between the Secure Control Module and the HPM controller
+            what: fpga-bitstream
