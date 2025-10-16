@@ -1,6 +1,8 @@
 company: Antmicro
 description: A reference DC-SCM design developed in collaboration with Lattice Semiconductor and NXP Semiconductors, providing BMC functionality through a compact SoM including a Lattice FPGA and NXP applications processor embedded on a DC-SCM carrier card.
+
 spec: https://raw.githubusercontent.com/antmicro/designer-graphs/refs/heads/main/dc-scm_reference_design_with_lattice_and_nxp.json
+
 scenarios:
     2025 OCP Global Summit demo:
         description: 'Demo scenario prepared for OCP Global Summit 2025'
@@ -20,6 +22,7 @@ devices:
     bmc-reference-osm: ref
     dc-scm_osm-l_carrier_card_with_bmc_som: ref
 
+    # XXX(pkoscik): required to make VSD asset binding work
     lattice-semiconductor-lfcpnx-100-8cbg256c: ref
     lattice-semiconductor-lcmxo3d-9400hc-5bg400c: ref
     nxp-mimx94398dvmmaa: ref
