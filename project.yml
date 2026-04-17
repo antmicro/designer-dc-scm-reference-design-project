@@ -17,6 +17,18 @@ scenarios:
             - device: lincoln_city_server -> lincoln_city_hpm -> lattice-semiconductor-lcmxo3d-9400hc-5bg400c
               asset: hpm_ltpi_rtl
 
+    Fan control demo:
+        description: 'Reference design for the LTPI connection between two FPGAs. They tunnel I2C interface between OpenBMC on i.MX94 and a fan controller'
+        assets:
+            - device: lattice-semiconductor-lfmxo5-55td-8bbg256c--0
+              asset: scm_ltpi_rtl
+            - device: lattice-semiconductor-lfmxo5-55td-8bbg256c--1
+              asset: hpm_ltpi_rtl
+            - device: nxp-mimx94398dvmmaa
+              asset: openbmc -> openbmc_upstream
+            - device: nxp-mimx94398dvmmaa
+              asset: openbmc_yocto_meta_layer
+
 devices:
     bmc-reference-carrier-board: ref
     bmc-reference-osm: ref
@@ -25,6 +37,7 @@ devices:
     # XXX(pkoscik): required to make VSD asset binding work
     lattice-semiconductor-lfcpnx-100-8cbg256c: ref
     lattice-semiconductor-lcmxo3d-9400hc-5bg400c: ref
+    lattice-semiconductor-lfmxo5-55td-8bbg256c: ref
     nxp-mimx94398dvmmaa: ref
     lincoln_city_hpm: ref
 
@@ -32,12 +45,19 @@ devices:
 
     lincoln_city_server: ref
 
+    Fan control demo:
+        image: https://designer.antmicro.com/dynamic-assets/latest/vendor-icons/antmicro.svg
+        category: Others
+        contains:
+            - lattice-semiconductor-lfmxo5-55td-8bbg256c
+            - lattice-semiconductor-lfmxo5-55td-8bbg256c
+            - nxp-mimx94398dvmmaa
+
     2025 OCP Global Summit demo:
         category: Complex devices
         description: Demo setup for 2025 OCP Global Summit
         image: https://raw.githubusercontent.com/antmicro/designer-media-files/refs/heads/main/2025_ocp_global_summit_demo.webp
         contains:
-            - bmc-reference-osm
             - dc-scm_osm-l_carrier_card_with_bmc_som
             - lincoln_city_server
 
@@ -61,6 +81,11 @@ software:
     HPM LTPI RTL:
         description: FPGA bitstream that implements the LTPI logic for communication between the Host Processor Module controller and the platform components
         what: fpga-bitstream
+        assets:
+          Source code (reference): https://www.latticesemi.com/view_document?document_id=53665
     SCM LTPI RTL:
         description: FPGA bitstream that implements the LTPI logic for communication between the Secure Control Module and the HPM controller
         what: fpga-bitstream
+        assets:
+          Source code (reference): https://www.latticesemi.com/view_document?document_id=53665
+
