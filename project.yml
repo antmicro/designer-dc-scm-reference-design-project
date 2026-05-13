@@ -33,6 +33,7 @@ devices:
     bmc-reference-carrier-board: ref
     bmc-reference-osm: ref
     dc-scm_osm-l_carrier_card_with_bmc_som: ref
+    dc-scm-development-setup: ref
 
     # XXX(pkoscik): required to make VSD asset binding work
     lattice-semiconductor-lfcpnx-100-8cbg256c: ref
