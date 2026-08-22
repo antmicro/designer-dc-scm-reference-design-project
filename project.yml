@@ -1,7 +1,8 @@
+name: Reference DC-SCM design with Lattice FPGA and NXP SoC (GH version)
 company: Antmicro
 description: A reference DC-SCM design developed in collaboration with Lattice Semiconductor and NXP Semiconductors, providing BMC functionality through a compact SoM including a Lattice FPGA and NXP applications processor embedded on a DC-SCM carrier card.
 
-spec: https://raw.githubusercontent.com/antmicro/designer-graphs/refs/heads/main/dc-scm_reference_design_with_lattice_and_nxp.json
+spec: ./specification.json
 
 scenarios:
     2025 OCP Global Summit demo:
