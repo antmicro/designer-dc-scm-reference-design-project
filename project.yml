@@ -58,7 +58,7 @@ devices:
     2025 OCP Global Summit demo:
         category: Complex devices
         description: Demo setup for 2025 OCP Global Summit
-        image: https://raw.githubusercontent.com/antmicro/designer-media-files/refs/heads/main/2025_ocp_global_summit_demo.webp
+        image: ocp-global-summit.webp
         contains:
             - dc-scm_osm-l_carrier_card_with_bmc_som
             - lincoln_city_server
